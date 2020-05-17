@@ -6,8 +6,9 @@ USE partner;
 DROP TABLE IF EXISTS partner;
 
 CREATE TABLE partner (
-    id int(10),
+    id int(10) NOT NULL AUTO_INCREMENT,
     name varchar(32),
-    key varchar(512),
+    publicKey varchar(512),
+    type int(2),
     PRIMARY KEY (id)
 );
