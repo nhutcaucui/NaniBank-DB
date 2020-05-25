@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS nanibank;
 USE nanibank;
 
 DROP TABLE IF EXISTS customer;
-DROP TABLE IF EXISTS user_information;
+DROP TABLE IF EXISTS customer_information;
 DROP TABLE IF EXISTS save_account;
 DROP TABLE IF EXISTS debit_account;
 DROP TABLE IF EXISTS transaction_history;
@@ -49,7 +49,7 @@ CREATE TABLE debt_alarm (
 );
 
 
-ALTER TABLE debit_account ADD FOREIGN KEY  fk_user (user_id) REFERENCES customer (id);
-ALTER TABLE save_account ADD FOREIGN KEY  fk_user (user_id) REFERENCES customer (id);
+ALTER TABLE debit_account ADD FOREIGN KEY  fk_user (owner) REFERENCES customer (id);
+ALTER TABLE save_account ADD FOREIGN KEY  fk_user (owner) REFERENCES customer (id);
 ALTER TABLE debt_alarm ADD FOREIGN KEY  fk_creditor (creditor) REFERENCES customer (id);
 ALTER TABLE debt_alarm ADD FOREIGN KEY  fk_debtor (debtor) REFERENCES customer (id);
