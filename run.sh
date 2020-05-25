@@ -20,6 +20,8 @@ sleep 3
 docker exec -i mysql-nanibank-api mysql -P 3306 --protocol=tcp -u root --password=nanibank < ./user/user-db-product.sql
 docker exec -i mysql-nanibank-api mysql -P 3306 --protocol=tcp -u root --password=nanibank < ./user/company-db-product.sql
 docker exec -i mysql-nanibank-api mysql -P 3306 --protocol=tcp -u root --password=nanibank < ./partner/partner-db-product.sql
+docker exec -i mysql-nanibank-api mysql -P 3306 --protocol=tcp -u root --password=nanibank < ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'nanibank'
+docker exec -i mysql-nanibank-api mysql -P 3306 --protocol=tcp -u root --password=nanibank < flush privileges;
 #mysql -P 33060 --protocol=tcp -u root --password=nanibank --reconnect < user-db-product.sql
 #mysql -P 33060 --protocol=tcp -u root --password=nanibank --reconnect < company-db-product.sql
 #mysql -P 33060 --protocol=tcp -u root --password=nanibank --reconnect < partner-db-product.sql
