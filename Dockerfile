@@ -1,8 +1,8 @@
 FROM mysql:latest
 
-ADD partner-db-product.sql partner-db-product.sql
-ADD company-db-product.sql company-db-product.sql
-ADD user-db-product.sql user-db-product.sql
+ADD ./partner/partner-db-product.sql partner-db-product.sql
+ADD ./user/company-db-product.sql company-db-product.sql
+ADD ./user/user-db-product.sql user-db-product.sql
 #ADD my.cnf /etc/mysql/my.cnf
 RUN mkdir -p /var/lib/mysql
 RUN mkdir -p /etc/mysql/conf.d
