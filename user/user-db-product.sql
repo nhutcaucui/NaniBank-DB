@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS customer_information;
 DROP TABLE IF EXISTS customer_receiver;
 DROP TABLE IF EXISTS customer_token;
+DROP TABLE IF EXISTS customer_message;
 DROP TABLE IF EXISTS saving_account;
 DROP TABLE IF EXISTS debit_account;
 DROP TABLE IF EXISTS transaction_history;
@@ -30,11 +31,27 @@ CREATE TABLE customer_receiver(
     remind_name varchar(128) NOT NULL
 );
 
+CREATE TABLE customer_message (
+    id int(20) NOT NULL,
+    title varchar(32),
+    message varchar(256),
+    time date
+);
+
 CREATE TABLE customer_token(
     id int(20) NOT NULL,
     access_token varchar(128),
     refresh_token varchar(128) 
     PRIMARY KEY (refresh_token)
+);
+
+CREATE TABLE transaction_pending(
+    id int(20),
+    from_account int(20),
+    to_account int(20),
+    otp varchar(8),
+    time_out date,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE transaction_history (
