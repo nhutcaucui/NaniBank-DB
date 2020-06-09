@@ -13,93 +13,86 @@ DROP TABLE IF EXISTS transaction_pending;
 DROP TABLE IF EXISTS debt;
 
 CREATE TABLE customer (
-    id int(20) NOT NULL AUTO_INCREMENT,
+    id int NOT NULL AUTO_INCREMENT,
     username varchar(32),
     password varchar(128),
-    PRIMARY KEY (id, username)
-);
-
-CREATE TABLE customer_information(
-    id int(20) NOT NULL,
-    nation varchar(5),
-    name varchar(128),
-    phone varchar(12),
-    birthdate date
-);
-
-CREATE TABLE customer_receiver(
-    id int(20) NOT NULL,
-    receiver int(20) NOT NULL,
-    remind_name varchar(128) NOT NULL,
-    PRIMARY KEY (id, receiver)
-);
-
-CREATE TABLE customer_message (
-    id int(20) NOT NULL,
-    owner int(20) NOT NULL,
-    title varchar(32),
-    message varchar(256),
-    time date,
-    is_read boolean,
     PRIMARY KEY (id)
 );
 
+CREATE TABLE customer_information(
+    customer_id int NOT NULL,
+    nation varchar(5),
+    name varchar(128),
+    phone varchar(12),
+    birthdate int
+);
+
+CREATE TABLE customer_receiver(
+    customer_id int NOT NULL,
+    receiver bigint NOT NULL,
+    remind_name varchar(128) NOT NULL,
+    PRIMARY KEY (customer_id, receiver)
+);
+
+CREATE TABLE customer_message (
+    message_id int NOT NULL,
+    customer_id int NOT NULL,
+    title varchar(32),
+    message varchar(256),
+    time int,
+    is_read boolean,
+    PRIMARY KEY (message_id)
+);
+
 CREATE TABLE customer_token(
-    id int(20) NOT NULL,
+    customer_id int NOT NULL,
     access_token varchar(128),
     refresh_token varchar(128),
     PRIMARY KEY (refresh_token)
 );
 
-CREATE TABLE transaction_pending(
-    id int(20),
-    from_account int(20),
-    to_account int(20),
-    otp varchar(8),
-    time_out date,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE transaction_history (
-    id int(20),
-    from_account int(20),
-    to_account int(20),
+    id int,
+    from_account bigint,
+    to_account bigint,
+    amount decimal(15, 2),
     message varchar(64),
-    amount float
+    type int
 );
 
 CREATE TABLE saving_account (
-    id int(20),
     name varchar(32),
-    owner int(20) NOT NULL,
-    balance float,
-    created_date date,
+    owner int NOT NULL,
+    balance decimal(15, 2),
+    created_date int,
     interest_rate float,
-    time int(10),
-    PRIMARY KEY (id)
+    time int,
+    PRIMARY KEY (name, owner)
 );
 
 CREATE TABLE debit_account (
-    id int(20) NOT NULL,
-    owner int(20) NOT NULL,
-    balance float,
-    issue_date date,
+    id bigint NOT NULL,
+    owner int NOT NULL,
+    balance decimal(15, 2),
+    issue_date int,
     PRIMARY KEY (owner)
 );
 
 CREATE TABLE debt (
-    creditor int(20) NOT NULL,
-    debtor int(20) NOT NULL,
+    id int NOT NULL AUTO_INCREMENT,
+    creditor bigint NOT NULL,
+    debtor bigint NOT NULL,
     name varchar(32),
     description varchar(256),
-    due_time date
+    due_time int,
+    PRIMARY KEY (id)
 );
 
-ALTER TABLE customer_information ADD FOREIGN KEY (id) REFERENCES customer(id);
-ALTER TABLE customer_receiver ADD FOREIGN KEY fk_user (id) REFERENCES customer(id);
-ALTER TABLE customer_receiver ADD FOREIGN KEY fk_receiver (receiver) REFERENCES customer(id);
-ALTER TABLE customer_token ADD FOREIGN KEY fk_user (id) REFERENCES customer(id);
-ALTER TABLE customer_message ADD FOREIGN KEY fk_user (owner) REFERENCES customer(id);
+ALTER TABLE customer_information ADD FOREIGN KEY (customer_id) REFERENCES customer(id);
+ALTER TABLE customer_receiver ADD FOREIGN KEY fk_user (customer_id) REFERENCES customer(id);
+ALTER TABLE customer_receiver ADD FOREIGN KEY fk_receiver (receiver) REFERENCES debit_account(id);
+ALTER TABLE customer_token ADD FOREIGN KEY fk_user (customer_id) REFERENCES customer(id);
+ALTER TABLE customer_message ADD FOREIGN KEY fk_user (customer_id) REFERENCES customer(id);
 ALTER TABLE debit_account ADD FOREIGN KEY  fk_user (owner) REFERENCES customer (id);
 ALTER TABLE save_account ADD FOREIGN KEY  fk_user (owner) REFERENCES customer (id);
 ALTER TABLE debt ADD FOREIGN KEY  fk_creditor (creditor) REFERENCES customer (id);
