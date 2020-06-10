@@ -21,7 +21,7 @@ CREATE TABLE customer (
 
 CREATE TABLE customer_information(
     customer_id int NOT NULL,
-    nation varchar(5),
+    email varchar(64),
     name varchar(128),
     phone varchar(12),
     birthdate int
