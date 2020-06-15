@@ -14,11 +14,12 @@ CREATE TABLE partner (
 );
 
 CREATE TABLE partner_transaction_history (
-    id int,
+    id int NOT NULL AUTO_INCREMENT,
     from_account bigint,
     to_account bigint,
     amount float,
     partner_id int,
     message varchar(64),
-    time int
+    time int,
+    PRIMARY KEY (id)
 );

@@ -7,15 +7,16 @@ DROP TABLE IF EXISTS admin;
 
 
 CREATE TABLE employee(
-    id int(10) NOT NULL AUTO_INCREMENT,
+    id int NOT NULL AUTO_INCREMENT,
     username varchar(32),
-    password varchar(256)
-
+    password varchar(256),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE admin(
-    id int(10) NOT NULL,
+    id int NOT NULL AUTO_INCREMENT,
     username varchar(32),
-    password varchar(256)
+    password varchar(256),
+    PRIMARY KEY (id);
 );
 

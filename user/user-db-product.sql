@@ -52,12 +52,13 @@ CREATE TABLE customer_token(
 );
 
 CREATE TABLE transaction_history (
-    id int,
+    id int NOT NULL AUTO_INCREMENT,
     from_account bigint,
     to_account bigint,
     amount decimal(15, 2),
     message varchar(64),
-    type int
+    type int,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE saving_account (
