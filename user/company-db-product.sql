@@ -17,6 +17,6 @@ CREATE TABLE admin(
     id int NOT NULL AUTO_INCREMENT,
     username varchar(32),
     password varchar(256),
-    PRIMARY KEY (id);
+    PRIMARY KEY (id)
 );
 
