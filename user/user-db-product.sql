@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS nanibank;
 USE nanibank;
 
-DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS customer_information;
 DROP TABLE IF EXISTS customer_receiver;
 DROP TABLE IF EXISTS customer_token;
@@ -11,6 +10,7 @@ DROP TABLE IF EXISTS debit_account;
 DROP TABLE IF EXISTS transaction_history;
 DROP TABLE IF EXISTS transaction_pending;
 DROP TABLE IF EXISTS debt;
+DROP TABLE IF EXISTS customer;
 
 CREATE TABLE customer (
     id int NOT NULL AUTO_INCREMENT,
