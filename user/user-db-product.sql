@@ -90,11 +90,11 @@ CREATE TABLE debt (
 );
 
 ALTER TABLE customer_information ADD FOREIGN KEY (customer_id) REFERENCES customer(id);
-ALTER TABLE customer_receiver ADD FOREIGN KEY fk_user (customer_id) REFERENCES customer(id);
-ALTER TABLE customer_receiver ADD FOREIGN KEY fk_receiver (receiver) REFERENCES debit_account(id);
-ALTER TABLE customer_token ADD FOREIGN KEY fk_user (customer_id) REFERENCES customer(id);
-ALTER TABLE customer_message ADD FOREIGN KEY fk_user (customer_id) REFERENCES customer(id);
-ALTER TABLE debit_account ADD FOREIGN KEY  fk_user (owner) REFERENCES customer (id);
+ALTER TABLE customer_receiver ADD FOREIGN KEY (customer_id) REFERENCES customer(id);
+ALTER TABLE customer_receiver ADD FOREIGN KEY (receiver) REFERENCES debit_account(id);
+ALTER TABLE customer_token ADD FOREIGN KEY (customer_id) REFERENCES customer(id);
+ALTER TABLE customer_message ADD FOREIGN KEY (customer_id) REFERENCES customer(id);
+ALTER TABLE debit_account ADD FOREIGN KEY (owner) REFERENCES customer (id);
 ALTER TABLE save_account ADD FOREIGN KEY  fk_user (owner) REFERENCES customer (id);
 ALTER TABLE debt ADD FOREIGN KEY  fk_creditor (creditor) REFERENCES customer (id);
 ALTER TABLE debt ADD FOREIGN KEY  fk_debtor (debtor) REFERENCES customer (id);
