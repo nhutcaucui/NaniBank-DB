@@ -81,8 +81,8 @@ CREATE TABLE debit_account (
 
 CREATE TABLE debt (
     id int NOT NULL AUTO_INCREMENT,
-    creditor bigint NOT NULL,
-    debtor bigint NOT NULL,
+    creditor int NOT NULL,
+    debtor int NOT NULL,
     name varchar(32),
     description varchar(256),
     due_time int,
@@ -95,6 +95,6 @@ ALTER TABLE customer_receiver ADD FOREIGN KEY (receiver) REFERENCES debit_accoun
 ALTER TABLE customer_token ADD FOREIGN KEY (customer_id) REFERENCES customer(id);
 ALTER TABLE customer_message ADD FOREIGN KEY (customer_id) REFERENCES customer(id);
 ALTER TABLE debit_account ADD FOREIGN KEY (owner) REFERENCES customer (id);
-ALTER TABLE saving_account ADD FOREIGN KEY  fk_user (owner) REFERENCES customer (id);
-ALTER TABLE debt ADD FOREIGN KEY  fk_creditor (creditor) REFERENCES customer (id);
-ALTER TABLE debt ADD FOREIGN KEY  fk_debtor (debtor) REFERENCES customer (id);
+ALTER TABLE saving_account ADD FOREIGN KEY (owner) REFERENCES customer (id);
+ALTER TABLE debt ADD FOREIGN KEY (creditor) REFERENCES customer (id);
+ALTER TABLE debt ADD FOREIGN KEY (debtor) REFERENCES customer (id);
