@@ -76,7 +76,7 @@ CREATE TABLE debit_account (
     owner int NOT NULL,
     balance decimal(15, 2),
     issue_date int,
-    PRIMARY KEY (owner)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE debt (
