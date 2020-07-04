@@ -84,7 +84,7 @@ CREATE TABLE debt (
     creditor int NOT NULL,
     debtor int NOT NULL,
     name varchar(32),
-    amount bigint NOTNULL,
+    amount bigint NOT NULL,
     description varchar(256),
     due_time int,
     PRIMARY KEY (id)
