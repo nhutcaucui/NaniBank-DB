@@ -8,8 +8,8 @@ DROP TABLE IF EXISTS partner_transaction_history;
 CREATE TABLE partner (
     id int NOT NULL AUTO_INCREMENT,
     name varchar(32),
-    publicKey varchar(512),
-    hashMethod varchar(128),
+    publicKey varchar(4096),
+    hashMethod varchar(1024),
     PRIMARY KEY (id)
 );
 
