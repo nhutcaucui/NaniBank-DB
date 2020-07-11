@@ -10,6 +10,7 @@ CREATE TABLE partner (
     name varchar(32),
     publicKey varchar(4096),
     hashMethod varchar(1024),
+    secretKey varchar(128),
     PRIMARY KEY (id)
 );
 
