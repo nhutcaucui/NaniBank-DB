@@ -58,6 +58,7 @@ CREATE TABLE transaction_history (
     amount decimal(15, 2),
     message varchar(64),
     type int,
+    time int(11),
     PRIMARY KEY (id)
 );
 
